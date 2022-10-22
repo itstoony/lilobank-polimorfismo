@@ -1,3 +1,5 @@
+package modelo;
+
 public abstract class Conta {
     protected double saldo; // private, usado para encapsulamento
     private int agencia;
@@ -30,25 +32,16 @@ public abstract class Conta {
 
     public abstract void deposita(double saldo);
 
-    public boolean saca (double saldo){
-        if(this.saldo >= saldo){
-            this.saldo -= saldo;
-            System.out.println("Saque realizado com sucesso!");
-            return true;
-        } else {
-            return false;
+    public void saca (double saldo) throws SaldoInsuficienteException{
+        if(this.saldo < saldo){
+            throw new SaldoInsuficienteException("Saldo: " + this.saldo + ", Valor: " + saldo);
         }
     }
 
-    public boolean transfere(double valor,  Conta destino){
-        if(this.saldo >= valor){
-            this.saldo -= valor;
-            destino.saldo += valor;
-            System.out.println("Transferência realizada com sucesso!");
-            return true;
-        } else {
-            return false;
-        }
+    public void transfere(double valor,  Conta destino) throws SaldoInsuficienteException{
+            if(this.saldo < valor){
+                throw new SaldoInsuficienteException("Saldo: " + this.getSaldo() + ", Valor: " + valor);
+            }
     }
 
     public double getSaldo(){

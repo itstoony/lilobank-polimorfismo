@@ -1,3 +1,5 @@
+package modelo;
+
 public class ContaCorrente extends Conta implements Tributavel{
 
     public ContaCorrente(int agencia, int conta) {
@@ -17,15 +19,15 @@ public class ContaCorrente extends Conta implements Tributavel{
     }
 
     @Override
-    public boolean saca(double saldo) {
+    public void saca(double saldo) throws SaldoInsuficienteException {
         double sacaCorrente = saldo - getValorImposto();
-        return super.saca(sacaCorrente);
+        super.saca(sacaCorrente);
     }
 
     @Override
-    public boolean transfere(double valor, Conta destino) {
+    public void transfere(double valor, Conta destino) throws SaldoInsuficienteException {
         double transfereCorrente = valor - getValorImposto();
-        return super.transfere(transfereCorrente, destino);
+        super.transfere(transfereCorrente, destino);
 
     }
 
