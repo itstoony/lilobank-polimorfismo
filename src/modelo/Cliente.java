@@ -1,6 +1,11 @@
 package modelo;
 
 public class Cliente {
+
+    /**
+     * Modelo de classe para representar um Cliente
+     *
+     */
     private String nome;
     private String cpf;
     private String profissao;

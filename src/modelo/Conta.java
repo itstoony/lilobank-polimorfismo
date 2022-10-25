@@ -1,21 +1,24 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public abstract class Conta {
-    protected double saldo; // private, usado para encapsulamento
+
+    protected double saldo; // protected, disponível apenas para filhos
     private int agencia;
     private int conta;
     private Cliente titular;
-    private static int total; // total de contas criadas
+    private static final ArrayList<Conta> contas = new ArrayList<>();
 
 
     public Conta(int agencia, int conta){
-            Conta.total++;
+        /**
+         * Construtor de conta a partir de parâmetros "agencia" e "conta"
+         * @param agencia
+         * @param conta
+         */
             this.agencia = agencia;
             this.conta = conta;
-    }
-
-    public static int getTotal() {
-        return total;
     }
 
     public void setTitular(Cliente titular) {
@@ -32,9 +35,14 @@ public abstract class Conta {
 
     public abstract void deposita(double saldo);
 
-    public void saca (double saldo) throws SaldoInsuficienteException{
-        if(this.saldo < saldo){
-            throw new SaldoInsuficienteException("Saldo: " + this.saldo + ", Valor: " + saldo);
+    public void saca (double valor) throws SaldoInsuficienteException{
+        /**
+         * Valor precisa ser maior que valor
+         * @param valor
+         * @throws SaldoInsuficienteException
+         */
+        if(this.saldo < valor){
+            throw new SaldoInsuficienteException("Saldo: " + this.saldo + ", Valor: " + valor);
         }
     }
 
@@ -59,6 +67,33 @@ public abstract class Conta {
     }
     public int getAgencia(){
         return this.agencia;
+    }
+
+    @Override
+    public String toString() {
+        /**
+         * Returns tipo da conta, número e agência
+         */
+        return  "Número: " + this.conta + ", Agência: " + this.agencia + "\n";
+    }
+
+    protected void addContas(Conta a){
+        /**
+         * Adiciona conta ao Array de contas através da referência
+         * @param reference
+         */
+        contas.add(a);
+    }
+
+    public static ArrayList<Conta> getContas() {
+        /**
+         * Array que guarda todas as contas por referência
+         */
+        return contas;
+    }
+
+    public static String totalContas(){
+        return "Total de contas: " + contas.size();
     }
 
 

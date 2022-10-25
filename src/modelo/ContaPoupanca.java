@@ -5,7 +5,7 @@ public class ContaPoupanca extends Conta {
 
     public ContaPoupanca(int agencia, int conta){
         super(agencia, conta);
-
+        super.addContas(this);
     }
 
     @Override
@@ -13,5 +13,8 @@ public class ContaPoupanca extends Conta {
         super.saldo += saldo;
     }
 
-
+    @Override
+    public String toString() {
+        return "Conta Poupança, " + super.toString();
+    }
 }
