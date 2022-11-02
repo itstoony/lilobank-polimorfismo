@@ -5,10 +5,9 @@ import modelo.SeguroDeVida;
 
 public class TesteTributaveis {
 
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		ContaCorrente cc= new ContaCorrente(222, 333);
 		cc.deposita(100.0);
-		
 		SeguroDeVida seguro = new SeguroDeVida();
 
 		// Full qualified name --  FQN

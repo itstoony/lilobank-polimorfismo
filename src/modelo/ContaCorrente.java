@@ -1,11 +1,14 @@
 package modelo;
 
+import excecoes.SaldoInsuficienteException;
+
 public class ContaCorrente extends Conta implements Tributavel{
 
     public ContaCorrente(int agencia, int conta) {
-        super(agencia, conta);
-        CalculadorDeImpostos impostos = new CalculadorDeImpostos();
-        super.addContas(this);
+            super(agencia, conta);
+            CalculadorDeImpostos impostos = new CalculadorDeImpostos();
+            super.addContas(this);
+            super.getContas().sort(new OrdenaLista());
     }
 
     @Override

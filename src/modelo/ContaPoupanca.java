@@ -6,6 +6,7 @@ public class ContaPoupanca extends Conta {
     public ContaPoupanca(int agencia, int conta){
         super(agencia, conta);
         super.addContas(this);
+        super.getContas().sort(new OrdenaLista());
     }
 
     @Override
